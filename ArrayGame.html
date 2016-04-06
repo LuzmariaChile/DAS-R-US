@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <div id="nav">
+        <ul>
+            <li><a href="index2.html">Home</a></li>
+            <li><a href="sample.html">Exit</a></li>
+
+        </ul>
+    </div>
+   
+
+    <link rel='stylesheet' type='text/css' href='stylesheet.css' />
+    <link rel='AnimationStyle' type='text/css' href='AnimationStyle.css' />
+<style >
+    
+div[id^="place"]
+{float:left; width:80px; height:80px; margin:3px; padding:3px; border:1px dotted #333333; background-color:#ffff99;}
+/*styling here*/
+span
+{float:left; width:80px; margin:2px; padding:3px; border:2px solid #999999; color:#333333;}
+.pics, .nums
+{clear:both; text-align:center;}
+
+.checkboxes input {
+    vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function dragIt(theEvent) {
+//tell the browser what to drag
+theEvent.dataTransfer.setData("Text", theEvent.target.id);
+}
+
+//function called when element drops
+function dropIt(theEvent) {
+
+
+    //get a reference to the element being dragged
+	var theData = theEvent.dataTransfer.getData("Text");
+	//get the element
+	var theDraggedElement = document.getElementById(theData);
+
+	validateQuestions(theDraggedElement.id, theEvent.target.id, "pic1", "place1", "Q1");
+	validateQuestions(theDraggedElement.id, theEvent.target.id, "pic2", "place2", "Q2");
+	validateQuestions(theDraggedElement.id, theEvent.target.id, "pic3", "place3", "Q3");
+	validateQuestions(theDraggedElement.id, theEvent.target.id, "pic4", "place4", "Q4");
+	validateQuestions(theDraggedElement.id, theEvent.target.id, "pic5", "place5", "Q5");
+    
+	//add it to the drop element
+	theEvent.target.appendChild(theDraggedElement);
+	//instruct the browser to allow the drop
+    //theEvent.preventDefault();
+}
+
+function validateQuestions(eventPicId, eventPlaceId, picId, placeId, questionCheckBoxId) {
+    //alert(picId+placeId+questionCheckBoxId);
+    if (eventPicId == picId) {
+        if (eventPlaceId == placeId) {
+            document.getElementById(questionCheckBoxId).checked = true;
+     
+            if ((document.getElementById("Q1").checked == true) && (document.getElementById("Q2").checked == true)
+                && (document.getElementById("Q3").checked == true) && (document.getElementById("Q4").checked == true) && (document.getElementById("Q5").checked == true)) {
+                alert("LEVEL COMPLETE. GOOD JOB. YOU JUST SORTED AN ARRAY");
+            }
+        }
+        else {
+            document.getElementById(questionCheckBoxId).checked = false;
+            alert("TRY AGAIN!");
+            var p = "#" + picId;
+            $(p).draggable({ revert: true });
+        }
+    }
+}
+    //functions here
+/*
+$(window).onload(function () {
+    disableCheckBoxes();
+});
+*/
+
+
+
+
+function disableCheckBoxes()
+{
+    document.getElementById("Q1").disabled = true;
+    document.getElementById("Q1").checked = false;
+
+    document.getElementById("Q2").disabled = true;
+    document.getElementById("Q2").checked = false;
+
+    document.getElementById("Q3").disabled = true;
+    document.getElementById("Q3").checked = false;
+
+    document.getElementById("Q4").disabled = true;
+    document.getElementById("Q4").checked = false;
+
+    document.getElementById("Q5").disabled = true;
+    document.getElementById("Q5").checked = false;
+}
+
+    /*
+$("#Q5").checked(function () {
+
+    alert("called");
+    if ((document.getElementById("Q1").checked == true) && (document.getElementById("Q2").checked == true)
+                && (document.getElementById("Q3").checked == true) && (document.getElementById("Q4").checked == true) && (document.getElementById("Q5").checked == true)) {
+        alert("LEVEL COMPLETE. GOOD JOB. YOU JUST SORTED AN ARRAY");
+    }
+});
+*/
+
+</script>
+</head>
+<body onload="disableCheckBoxes()" style="font-family:'Lucida Sans'; font-size:16px; background-color:#ff9f80" >
+<div id="top">
+<h1>
+	Arrays
+</h1>
+<h2>
+<ul>
+	<li>Arrays store data sequentially</li>
+	<li>Data stored in an array needs to be the same type. For example numbers, words, fruits, images.</li>
+	<li>Memory gets allocated continuously</li>
+	<li>Access to elements with indexes</li>
+
+</ul>
+</h2>
+
+</div>
+
+<!--page elements-->
+<div class="pics">
+<div id="place1" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+</div>
+<div id="place2" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+</div>
+<div id="place3" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+</div>
+<div id="place4" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+</div>
+<div id="place5" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+</div>
+</div>
+
+<div class="nums" style="font:bold; font-size:20px">
+<span>0</span>
+<span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+</div>
+
+<div class="pics">
+<div id="place6" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+<img src="FourBananas.jpg" width="80" height="80" draggable="true" ondragstart="dragIt(event);" id="pic4" />
+</div>
+<div id="place7" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+<img src="OneBanana.jpg" width="80" height="80" draggable="true" ondragstart="dragIt(event);" id="pic1" />
+</div>
+<div id="place8" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+<img src="TwoBananas.jpg" width="80" height="80" draggable="true" ondragstart="dragIt(event);" id="pic2" />
+</div>
+<div id="place9" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+<img src="FiveBananas.jpg" width="80" height="80" draggable="true" ondragstart="dragIt(event);" id="pic5" />
+</div>
+<div id="place10" ondrop="dropIt(event);" ondragover="event.preventDefault();">
+<img src="ThreeBananas.jpg" width="80" height="80" draggable="true" ondragstart="dragIt(event);" id="pic3" />
+</div>
+</div>
+
+    <br />
+    <br />
+    <br />
+<div class="checkboxes">
+    <br />
+    <br />
+    <br />
+    <h2>
+        Q1 Put 1 bananas in index 0 of the array
+        <input type="checkbox" id="Q1">
+    </h2>
+
+    <h2>
+        Q2 Put 2 bananas in index 1 of the array
+        <input type="checkbox" id="Q2">
+    </h2>
+
+    <h2>
+        Q3 Put 3 bananas in index 2 of the array
+        <input type="checkbox" id="Q3">
+    </h2>
+
+    <h2>
+        Q4 Put 4 bananas in index 3 of the array
+        <input type="checkbox" id="Q4">
+    </h2>
+
+    <h2>
+        Q5 Put 5 bananas in index 4 of the array
+        <input type="checkbox" id="Q5">
+    </h2>
+
+</div>
+    <div><a hreExit</div>
+
+</body>
+</html>
